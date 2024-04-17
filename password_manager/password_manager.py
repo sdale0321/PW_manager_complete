@@ -4,17 +4,17 @@ from cryptography.fernet import Fernet
 def write_key():#key + password + text to encrypt = random text 
     key = Fernet.generate_key()
     with open("key.key", "wb") as key_file:
-        key_file.write(key) '''
+        key_file.write(key) ''' #changed to 'load_key'
 
 def load_key(): 
-    file = open("key.key", "rb")
-    key = file.read()
-    file.close()
-    return key
+    file = open("key.key", "rb") #'rb' opens the file in binary format for reading
+    key = file.read() #reads file
+    file.close() #closes file 
+    return key #whenever a file is opened, it needs to be closed.  If not using a method that will automatically take care
+    #of this, you have to explicitly state it 
 
-# master_pwd = input("What is the master password? ")
 key = load_key() #.encode is turning the PW into bytes 
-fer = Fernet(key)
+fer = Fernet(key) #this is initializing an encryption module 
 
 def view():
     with open('passwords.txt', 'r') as f:
